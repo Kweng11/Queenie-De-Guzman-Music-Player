@@ -69,9 +69,9 @@
         </div>
         <div class="modal-body">
         <br>
-          <?php if(isset($mus)): ?>
-              <?php foreach($mus as $music): ?>
-                  <a href="/main"class="btn btn-primary" style="text-decoration: none;"><?= $p['playlistname']; ?></a>
+          <?php if(isset($plays)): ?>
+              <?php foreach($plays as $p): ?>
+                  <a href="/main"class="btn btn-primary" style="text-decoration: none;"><?= $music['playlistname']; ?></a>
                   <a href="/deleteplaylist" class="hover-effect">
                     <img src="<?= base_url(); ?>/delete.png">
             
@@ -100,8 +100,8 @@
                 <!-- Add your form here -->
                 <form action="/createplaylist" method="post">
                     <div class="mb-3">
-                        <label for="playlistName" class="form-label">Playlist Name</label>
-                        <input type="text" class="form-control" id="playlistName" name="playlistName" required>
+                        <label for="playlistname" class="form-label">Playlist Name</label>
+                        <input type="text" class="form-control" id="playlistname" name="playlistname" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Create</button>
                 </form>
@@ -114,6 +114,25 @@
     </div>
 </div>
 
+<!-- Modal for song addition form -->
+<div class="modal fade" id="SongModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Upload a Song:</h3>
+        </div>
+          <!--INPUT FILE -->
+          <form action="/addsong" method="post" enctype="multipart/form-data">
+            <label for="myfile">Select file:</label>
+            <input type="file" id="myfile" name="myfile" accept=".mp3">
+            <input type="submit" value="Upload"><br>
+          </form>
+          <div class="modal-footer">
+          <a href="#" data-bs-dismiss="modal" class="btn btn-secondary"style="text-decoration: none;">Close</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <form action="/searchsong" method="get">
     <input type="search" name="search" placeholder="Search a Song">
@@ -121,7 +140,8 @@
 </form><br>
 
    <h1>Music Player</h1>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">My Playlist</button><br><br><br>
+   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PlaylistModal">My Playlist</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#SongModal">Add Song</button><br><br><br>
 
 
 
@@ -132,7 +152,10 @@
                  <label for="myfile">Select file:</label>
                  <input type="file" id="myfile" name="myfile" accept=".mp3">
                   <input type="submit" value="Upload">
-              </form>
+              </form> 
+              <br>
+
+              
 
 
     <audio id="audio" controls autoplay></audio>
@@ -142,7 +165,7 @@
             <?php foreach ($mus as $music): ?>
                 <li data-src="<?= base_url(); ?>/music/<?= $music['musicname'];?>.mp3"><?= $music['musicname']; ?>
                   <a href="/addtoplaylist" class="hover-effect">
-                      <img src="<?= base_url(); ?>/add.png">
+                      <img src="<?= base_url(); ?>/add.png" width="20">
                   </a>
                 </li>
             <?php endforeach; ?>
