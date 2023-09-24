@@ -10,4 +10,3 @@ use CodeIgniter\Router\RouteCollection;
  $routes->get('/searchsong', 'MusicController::searchsong');
  $routes->get('/addtoplaylist', 'MusicController::addtoplaylist');
  $routes->post('/addsong', 'MusicController::addsong');
-
