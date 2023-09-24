@@ -100,15 +100,13 @@
 
 
 
-     <!--INPUT FILE -->
-          <h3>Upload a Song:</h3>
+    <!--INPUT FILE -->
+    <h3>Upload a Song:</h3>
                <form action="/addsong" method="post" enctype="multipart/form-data">
                  <label for="myfile">Select file:</label>
                  <input type="file" id="myfile" name="myfile" accept=".mp3">
                   <input type="submit" value="Upload">
-              </form><br> <br>
-
-
+              </form>
 
 
     <audio id="audio" controls autoplay></audio>
