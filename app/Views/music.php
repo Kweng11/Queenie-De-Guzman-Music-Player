@@ -130,38 +130,59 @@
     <?php endif; ?>
     </ul>
 
-
-    <div class="modal" id="myModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title">Select from playlist</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-
-          <!-- Modal body -->
-          <div class="modal-body">
-          <form action="/" method="post">
-            <p id="modalData"></p>
-            <input type="hidden" id="musicID" name="musicID">
-            <select  name="playlist" class="form-control" >
-              <option value="playlist">playlist</option>
-            </select>
-            <input type="submit" name="add">
-            </form>
-          </div>
-
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          </div>
-
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Playlists</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <br>
+          <?php if(isset($plays)): ?>
+              <?php foreach($plays as $p): ?>
+                  <a href="/main" class="btn btn-primary" style="text-decoration: none;"><?= $p['playlistname']; ?></a>
+              <br><br>
+              <?php endforeach; ?>
+          <?php endif; ?>
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-bs-dismiss="modal" class="btn btn-secondary"style="text-decoration: none;">Close</a>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#createPlaylistModal" class="btn btn-primary"style="text-decoration: none;">Create New Playlist</a>
         </div>
       </div>
     </div>
+  </div>
+<!-- Modal for playlist creation form -->
+<div class="modal fade" id="createPlaylistModal" tabindex="-1" aria-labelledby="createPlaylistModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createPlaylistModalLabel">Create New Playlist</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              
+                <!-- Add your form here -->
+                <form action="/createplaylist" method="post">
+                    <div class="mb-3">
+                        <label for="playlistName" class="form-label">Playlist Name</label>
+                        <input type="text" class="form-control" id="playlistName" name="playlistName" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
+     
     <script>
     $(document).ready(function () {
   // Get references to the button and modal

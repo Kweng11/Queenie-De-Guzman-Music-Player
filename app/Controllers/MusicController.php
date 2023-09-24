@@ -49,7 +49,13 @@ class MusicController extends BaseController
                 }
                 return redirect()->to('/main');
                 exit();
+
+
             }
+             
+
+
+            
         }
     }
 }
