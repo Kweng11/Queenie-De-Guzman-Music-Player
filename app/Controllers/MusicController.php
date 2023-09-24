@@ -45,10 +45,10 @@ class MusicController extends BaseController
                 ];
                 $main->save($datatoadd);
                 if($file->isValid() && !$file->hasMoved()){
-                    $file->move('./music');
+                    $file->move('/music');
                 }
                 return redirect()->to('/main');
-                return view('music', $data);
+                
                 exit();
             }
         }
