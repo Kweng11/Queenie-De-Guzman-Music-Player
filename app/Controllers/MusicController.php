@@ -10,10 +10,21 @@ class MusicController extends BaseController
 {
     public function index()
     {
+    $play = new PlaylistModel();
      $main = new MusicModel();
-     $data['music'] = $main->findAll();
-     $data['mus'] = [];
-     return view('music', $data);
+     $playlistData =
+        [
+        'plays' => $play->findAll(),
+        'play' => [],
+        ];
+        $musicData = 
+        [
+            'music' => $main->findAll(),
+            'mus' => [],
+        ];
+        $data = array_merge($playlistData, $musicData);
+        return view('music', $data);
+
     }
     public function searchsong()
     {
@@ -25,6 +36,21 @@ class MusicController extends BaseController
         }
         return view('music', $data);
     }
+
+    public function selectedplaylist($id)
+    {
+        if (isset($id)) {
+            $play = new PlaylistModel();
+            $main = new MusicModel();
+            $selectedplaylistname = $play->find($id);
+
+            if ($selectedplaylistname) {
+                session()->set('selected_playlist', $selectedplaylistname);
+            }
+        }
+        return redirect()->to('/main');
+    }
+
     public function addsong()
     {
         if($this->request->getMethod() == 'post'){

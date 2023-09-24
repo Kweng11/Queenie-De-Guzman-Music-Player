@@ -68,15 +68,14 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <br>
+          <br>
           <?php if(isset($plays)): ?>
               <?php foreach($plays as $p): ?>
-                  <a href="/main"class="btn btn-primary" style="text-decoration: none;"><?= $music['playlistname']; ?></a>
-                  <a href="/deleteplaylist" class="hover-effect">
-                    <img src="<?= base_url(); ?>/delete.png">
-            
+                  <a href="/selectedplaylist/<?= $p['playlistname']; ?>" class="btn btn-primary" style="text-decoration: none;"><?= $p['playlistname']; ?></a>
+                  <a href="/deleteplaylist/<?= $p['id']; ?>" class="hover-effect">
+                      <img src="<?= base_url(); ?>/delete.jpg" width="20">
                   </a>
-              <br>
+              <br><br>
               <?php endforeach; ?>
           <?php endif; ?>
         </div>
