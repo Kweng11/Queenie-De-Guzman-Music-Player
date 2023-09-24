@@ -50,12 +50,23 @@ class MusicController extends BaseController
                 return redirect()->to('/main');
                 exit();
 
+           }
+                    
+        }
+  
+    }
 
-            }
-             
-
-
-            
+    public function createplaylist()
+    {
+        if($this->request->getMethod() == 'post'){
+            $play = new MusicModel();
+            $data = [
+                'playlistname' => $this->request->getVar('playlistName'),
+                'onplaylist' => "0"
+            ];
+            $play->save($data);
+            return redirect()->to('/main');
         }
     }
+
 }
