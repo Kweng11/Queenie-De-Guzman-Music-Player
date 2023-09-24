@@ -69,8 +69,8 @@
         </div>
         <div class="modal-body">
         <br>
-          <?php if(isset($plays)): ?>
-              <?php foreach($plays as $p): ?>
+          <?php if(isset($mus)): ?>
+              <?php foreach($mus as $music): ?>
                   <a href="/main"class="btn btn-primary" style="text-decoration: none;"><?= $p['playlistname']; ?></a>
                   <a href="/deleteplaylist" class="hover-effect">
                     <img src="<?= base_url(); ?>/delete.png">
